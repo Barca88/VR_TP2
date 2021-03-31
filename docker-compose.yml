@@ -1,0 +1,60 @@
+version: '3'
+services:
+  service_mongo:
+    image: mongo:latest
+    container_name: service_mongo
+    volumes:
+      - mongo-vol:/data/db
+    networks:
+      - bdnetwork
+  service_auth:
+    image: barca88/auth:latest
+    container_name: service_auth
+    networks:
+      - bdnetwork
+      - ftpnetwork
+      - httpnetwork
+    volumes:
+      - ./logs:/logfile
+  service_http:
+    image: barca88/http:latest
+    container_name: service_http
+    networks:
+      - httpnetwork
+    volumes:
+      - files-vol:/volume
+      - ./logs:/logfile
+  service_ftp:
+    image: barca88/ftp:latest
+    container_name: service_ftp
+    ports:
+      - "21:21"
+    networks:
+      - ftpnetwork
+    volumes:
+      - files-vol:/volume
+      - ./logs:/logfile
+  service_proxy:
+    image: barca88/proxy:latest
+    container_name: service_proxy
+    ports:
+      - "80:80"
+    networks:
+      - httpnetwork
+  service_web:
+    image: barca88/webapp:latest
+    container_name: service_web
+    networks:
+      - httpnetwork 
+    volumes:
+      - ./logs:/logfile
+volumes:
+  mongo-vol:
+  files-vol:
+networks:
+  bdnetwork:
+    name: bdnetwork
+  ftpnetwork:
+    name: ftpnetwork
+  httpnetwork:
+    name: httpnetwork
