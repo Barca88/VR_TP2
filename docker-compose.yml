@@ -50,7 +50,9 @@ services:
       - ./logs:/logfile
 volumes:
   mongo-vol:
+    name: mongo-vol
   files-vol:
+    name: files-vol
 networks:
   bdnetwork:
     name: bdnetwork
