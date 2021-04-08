@@ -5,13 +5,14 @@
       color="primary"
       dark
     >
-      Interface Web TP2 VR
+      VR TP2
       <v-spacer></v-spacer>
       <v-btn 
+        rounded
         v-if="this.$store.state.token"
         @click="logout()"
       >
-        Log out
+        Logout
       </v-btn>
     </v-app-bar>
 

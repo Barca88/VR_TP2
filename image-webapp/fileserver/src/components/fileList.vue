@@ -14,9 +14,7 @@
     </v-file-input>
     <v-row justify="end" class="mr-5">
       <v-btn color="primary" rounded @click="addFile()"> 
-        <v-icon>
-          mdi-cloud-upload
-        </v-icon>
+        save
       </v-btn>
     </v-row>
     <v-list shaped>
@@ -38,7 +36,7 @@
             </v-col>
             <v-col>
               <v-btn rounded color="primary" @click="getFile(item)">
-                <v-icon>mdi-cloud-download</v-icon>
+                open
               </v-btn>
             </v-col>
             <v-col>
