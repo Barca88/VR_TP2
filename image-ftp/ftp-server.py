@@ -26,7 +26,7 @@ class MyAuthorizer(DummyAuthorizer):
           'username': username,
           'password': password,
         }
-        r = requests.post("http://service_auth:1920/authenticate", data=d)
+        r = requests.post("http://service_auth:8801/authenticate", data=d)
         if r.json()['token']:
             valid = True
         if valid:

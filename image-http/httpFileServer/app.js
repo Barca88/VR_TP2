@@ -29,7 +29,7 @@ function verifyAuth(req, res, next){
   if(req.headers['authorization']) {
     // Set the token
     req.token = req.headers['authorization']
-    axios.get('http://service_auth:1920/authenticated', {
+    axios.get('http://service_auth:8801/authenticated', {
       headers: {
         Authorization: req.token 
       }
@@ -61,5 +61,5 @@ app.delete('/file/:filename', verifyAuth,(req, res) => {
 app.post('/file', verifyAuth, upload.single('newfile'), (req, res) => {
   res.json("New file added");
 });
-
-app.listen(1919, () => console.log('Server started on port 1919'));
+var port = 8888
+app.listen(port, () => console.log('Server started on port '+port));
